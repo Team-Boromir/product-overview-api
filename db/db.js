@@ -6,10 +6,7 @@ const Product = sequelize.define('Product', {
   id: {
     type: DataTypes.INTEGER,
     allowNull: false,
-    primaryKey: true,
-    validate: {
-      isInt: true
-    }
+    primaryKey: true
   },
   name: {
     type: DataTypes.STRING
@@ -29,17 +26,33 @@ const Product = sequelize.define('Product', {
 });
 
 const Feature = sequelize.define('Feature', {
-  id: {},
-  product_id: {},
+  id: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    primaryKey: true
+  },
+  product_id: {
+    type: DataTypes.INTEGER
+  },
   feature: {},
   value: {}
 });
 
 const Photo = sequelize.define('Photo', {
-  id: {},
-  styleId: {},
-  url: {},
-  thumbnail_url: {}
+  id: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    primaryKey: true
+  },
+  styleId: {
+    type: DataTypes.INTEGER
+  },
+  url: {
+    type: DataTypes.STRING
+  },
+  thumbnail_url: {
+    type: DataTypes.STRING
+  }
 });
 
 // I'm not sure how to do a relational set up and will need to look into this
@@ -48,19 +61,41 @@ const Related_Product = sequelize.define('Relate_Product', {
 });
 
 const Sku = sequelize.define('Sku', {
-  id: {},
-  styleId: {},
-  size: {},
-  quantity: {}
+  id: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    primaryKey: true
+  },
+  styleId: {
+    type: DataTypes.INTEGER
+  },
+  size: {
+    type: DataTypes.STRING
+  },
+  quantity: {
+    type: DataTypes.INTEGER
+  }
 });
 
 const Style = sequelize.define('Style', {
-  id: {},
+  id: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    primaryKey: true
+  },
   productId: {},
-  name: {},
-  sale_price: {},
-  original_price: {},
-  default_price: {}
+  name: {
+    type: DataTypes.STRING
+  },
+  sale_price: {
+    type: DataTypes.INTEGER
+  },
+  original_price: {
+    type: DataTypes.INTEGER
+  },
+  default_price: {
+    type: DataTypes.INTEGER
+  }
 });
 
 
