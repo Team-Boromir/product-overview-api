@@ -10,10 +10,10 @@ describe('setting up pactum and jest', () => {
 });
 
 
-describe('Product api has the expected endpoings', () => {
-  it('should have a GET /products endpoing', () => {
+describe('Product api has the expected endpoints', () => {
+  it('should have a GET /products endpoint', () => {
     return pactum.spec()
-      .get('/product')
+      .get('http://localhost:3000/products')
       .expectStatus(200);
   })
 })
