@@ -29,11 +29,17 @@ const Product = sequelize.define('Product', {
 });
 
 const Feature = sequelize.define('Feature', {
-
+  id: {},
+  product_id: {},
+  feature: {},
+  value: {}
 });
 
 const Photo = sequelize.define('Photo', {
-
+  id: {},
+  styleId: {},
+  url: {},
+  thumbnail_url: {}
 });
 
 // I'm not sure how to do a relational set up and will need to look into this
@@ -42,11 +48,19 @@ const Related_Product = sequelize.define('Relate_Product', {
 });
 
 const Sku = sequelize.define('Sku', {
-
+  id: {},
+  styleId: {},
+  size: {},
+  quantity: {}
 });
 
 const Style = sequelize.define('Style', {
-
+  id: {},
+  productId: {},
+  name: {},
+  sale_price: {},
+  original_price: {},
+  default_price: {}
 });
 
 
