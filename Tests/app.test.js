@@ -1,19 +1,35 @@
 const pactum = require('pactum');
 
-// This is just making sure that I am setting up the tests right
-describe('setting up pactum and jest', () => {
-  it ('should be a teapot', () => {
+
+
+describe('Product api has the expected endpoints', () => {
+
+  it('should have a GET /products endpoint', () => {
     return pactum.spec()
-      .get('http://httpbin.org/status/418')
-      .expectStatus(418);
+      .get('http://localhost:3000/products')
+      .expectStatus(200)
+      .expectBody('Here be products');
   });
-});
 
-
-describe('Product api has the expected endpoings', () => {
-  it('should have a GET /products endpoing', () => {
+  it('should have a GET /products/:product_id endpoint', () => {
     return pactum.spec()
-      .get('/product')
-      .expectStatus(200);
-  })
-})
+      .get('http://localhost:3000/products/123456')
+      .expectStatus(200)
+      .expectBody('Here be one product you requested');
+  });
+
+  it('should have a GET /products/:product_id/styles endpoint', () => {
+    return pactum.spec()
+      .get('http://localhost:3000/products/123456/styles')
+      .expectStatus(200)
+      .expectBody('Here be the styles you requested');
+  });
+
+  it('should have a GET /products/product_id/related endpoint', () => {
+    return pactum.spec()
+      .get('http://localhost:3000/products/123456/related')
+      .expectStatus(200)
+      .expectBody('Here be the related products you requested');
+  });
+
+});
