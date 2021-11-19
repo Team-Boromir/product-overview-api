@@ -11,12 +11,11 @@ const getProducts = (count = 5, page = 1) => {
       }
     }
   })
-  debugger;
   return products;
 };
 
-const getProduct = () => {
-  debugger;
+const getProduct = (id) => {
+  return Product.findByPk(id)
 };
 
 
