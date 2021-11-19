@@ -120,33 +120,6 @@ const Style = sequelize.define('Style', {
   timestamps: false
 });
 
-// const weConnect = async () => {
-//   try {
-//     // debugger;
-//     await sequelize.authenticate();
-//     // debugger;
-//     console.log('Connection has been established successfully.');
-//   } catch (error) {
-//     console.error('Unable to connect to the database:', error);
-//   }
-//   let product = await Product.findAll({
-//     where: {
-//       id: {
-//         [Op.lte]: 5
-//       }
-//     }
-//   })
-//   .then((products) => {
-//     debugger;
-//   })
-//   .catch((err) => {
-//     debugger;
-//   });
-//   debugger;
-// }
-
-// weConnect();
-
 
 module.exports = {
   sequelize,
