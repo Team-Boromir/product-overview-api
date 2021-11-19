@@ -1,6 +1,10 @@
-const {Sequelize, DataTypes} = require('sequelize');
+const {Sequelize, DataTypes, Op} = require('sequelize');
+const {USER_NAME, PASSWORD} = require('../config/config.js');
 
-const sequelize = new Sequelize('postgres:localhost:5432/product-info');
+const sequelize = new Sequelize('product-info', USER_NAME, PASSWORD, {
+  timestamps: false,
+  dialect: 'postgres'
+});
 
 const Product = sequelize.define('Product', {
   id: {
@@ -23,6 +27,8 @@ const Product = sequelize.define('Product', {
   default_price: {
     type: DataTypes.INTEGER
   }
+}, {
+  timestamps: false
 });
 
 const Feature = sequelize.define('Feature', {
@@ -34,8 +40,14 @@ const Feature = sequelize.define('Feature', {
   product_id: {
     type: DataTypes.INTEGER
   },
-  feature: {},
-  value: {}
+  feature: {
+    type: DataTypes.STRING
+  },
+  value: {
+    type: DataTypes.STRING
+  }
+}, {
+  timestamps: false
 });
 
 const Photo = sequelize.define('Photo', {
@@ -53,11 +65,15 @@ const Photo = sequelize.define('Photo', {
   thumbnail_url: {
     type: DataTypes.STRING
   }
+}, {
+  timestamps: false
 });
 
 // I'm not sure how to do a relational set up and will need to look into this
 const Related_Product = sequelize.define('Relate_Product', {
 
+}, {
+  timestamps: false
 });
 
 const Sku = sequelize.define('Sku', {
@@ -75,6 +91,8 @@ const Sku = sequelize.define('Sku', {
   quantity: {
     type: DataTypes.INTEGER
   }
+}, {
+  timestamps: false
 });
 
 const Style = sequelize.define('Style', {
@@ -83,7 +101,9 @@ const Style = sequelize.define('Style', {
     allowNull: false,
     primaryKey: true
   },
-  productId: {},
+  productId: {
+    type: DataTypes.INTEGER
+  },
   name: {
     type: DataTypes.STRING
   },
@@ -96,8 +116,36 @@ const Style = sequelize.define('Style', {
   default_price: {
     type: DataTypes.INTEGER
   }
+}, {
+  timestamps: false
 });
 
+// const weConnect = async () => {
+//   try {
+//     // debugger;
+//     await sequelize.authenticate();
+//     // debugger;
+//     console.log('Connection has been established successfully.');
+//   } catch (error) {
+//     console.error('Unable to connect to the database:', error);
+//   }
+//   let product = await Product.findAll({
+//     where: {
+//       id: {
+//         [Op.lte]: 5
+//       }
+//     }
+//   })
+//   .then((products) => {
+//     debugger;
+//   })
+//   .catch((err) => {
+//     debugger;
+//   });
+//   debugger;
+// }
+
+// weConnect();
 
 
 module.exports = {
@@ -105,7 +153,7 @@ module.exports = {
   Product,
   Feature,
   Photo,
-  Relate_Product,
+  Related_Product,
   Sku,
   Style
 };
