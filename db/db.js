@@ -2,7 +2,6 @@ const {Sequelize, DataTypes, Op} = require('sequelize');
 const {USER_NAME, PASSWORD} = require('../config/config.js');
 
 const sequelize = new Sequelize('product-info', USER_NAME, PASSWORD, {
-  timestamps: false,
   dialect: 'postgres',
   logging: false
 });
@@ -71,8 +70,18 @@ const Photo = sequelize.define('Photo', {
 });
 
 // I'm not sure how to do a relational set up and will need to look into this
-const Related_Product = sequelize.define('Relate_Product', {
-
+const RelatedProduct = sequelize.define('Related_Product', {
+  id: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    primaryKey: true
+  },
+  current_product_id: {
+    type: DataTypes.INTEGER
+  },
+  related_product_id: {
+    type: DataTypes.INTEGER
+  }
 }, {
   timestamps: false
 });
@@ -127,7 +136,7 @@ module.exports = {
   Product,
   Feature,
   Photo,
-  Related_Product,
+  RelatedProduct,
   Sku,
   Style
 };
