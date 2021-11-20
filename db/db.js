@@ -3,7 +3,8 @@ const {USER_NAME, PASSWORD} = require('../config/config.js');
 
 const sequelize = new Sequelize('product-info', USER_NAME, PASSWORD, {
   timestamps: false,
-  dialect: 'postgres'
+  dialect: 'postgres',
+  logging: false
 });
 
 const Product = sequelize.define('Product', {
@@ -96,7 +97,7 @@ const Sku = sequelize.define('Sku', {
 });
 
 const Style = sequelize.define('Style', {
-  id: {
+  style_id: {
     type: DataTypes.INTEGER,
     allowNull: false,
     primaryKey: true
@@ -113,8 +114,8 @@ const Style = sequelize.define('Style', {
   original_price: {
     type: DataTypes.INTEGER
   },
-  default_price: {
-    type: DataTypes.INTEGER
+  default_style: {
+    type: DataTypes.BOOLEAN
   }
 }, {
   timestamps: false
