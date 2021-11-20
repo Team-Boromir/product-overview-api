@@ -2,8 +2,8 @@ const {Sequelize, DataTypes, Op} = require('sequelize');
 const {USER_NAME, PASSWORD} = require('../config/config.js');
 
 const sequelize = new Sequelize('product-info', USER_NAME, PASSWORD, {
-  timestamps: false,
-  dialect: 'postgres'
+  dialect: 'postgres',
+  logging: false
 });
 
 const Product = sequelize.define('Product', {
@@ -70,8 +70,18 @@ const Photo = sequelize.define('Photo', {
 });
 
 // I'm not sure how to do a relational set up and will need to look into this
-const Related_Product = sequelize.define('Relate_Product', {
-
+const RelatedProduct = sequelize.define('Related_Product', {
+  id: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    primaryKey: true
+  },
+  current_product_id: {
+    type: DataTypes.INTEGER
+  },
+  related_product_id: {
+    type: DataTypes.INTEGER
+  }
 }, {
   timestamps: false
 });
@@ -96,7 +106,7 @@ const Sku = sequelize.define('Sku', {
 });
 
 const Style = sequelize.define('Style', {
-  id: {
+  style_id: {
     type: DataTypes.INTEGER,
     allowNull: false,
     primaryKey: true
@@ -113,8 +123,8 @@ const Style = sequelize.define('Style', {
   original_price: {
     type: DataTypes.INTEGER
   },
-  default_price: {
-    type: DataTypes.INTEGER
+  default_style: {
+    type: DataTypes.BOOLEAN
   }
 }, {
   timestamps: false
@@ -126,7 +136,7 @@ module.exports = {
   Product,
   Feature,
   Photo,
-  Related_Product,
+  RelatedProduct,
   Sku,
   Style
 };

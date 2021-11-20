@@ -1,4 +1,4 @@
-const {getProducts, getProduct} = require('../db/Product.js');
+const {getProducts, getProduct, getRelatedProducts} = require('../db/Product.js');
 
 describe('Getting Products', () => {
 
@@ -37,7 +37,6 @@ describe('Getting a Product', () => {
   it('getProducts should return a product with an id that matches the passed in id', () => {
     return getProduct(12321)
     .then((product) => {
-      debugger;
       expect(product.id).toBe(12321);
     })
     .catch((err) => {
@@ -53,3 +52,21 @@ describe('Getting a Product', () => {
   })
 
 });
+
+describe('Getting related products', () => {
+
+  it('getRelatedProducts should be a function', () => {
+    expect(typeof getRelatedProducts).toBe('function');
+  })
+
+  it('getRelatedProducts should resolve to an array', () => {
+    return getRelatedProducts(123433)
+    .then((relatedProducts) => {
+      debugger;
+      expect(Array.isArray(relatedProducts)).toBe(true);
+    })
+  })
+
+  
+
+})

@@ -1,5 +1,5 @@
 const {DataTypes, Op} = require('sequelize');
-const {sequelize, Product, Feature} = require('./db.js');
+const {sequelize, Product, Feature, RelatedProduct} = require('./db.js');
 
 
 
@@ -39,7 +39,27 @@ const getProduct = (id) => {
 };
 
 
+const getRelatedProducts = (product_id) => {
+  // Get the related_product_id for the passed in product_id
+  return RelatedProduct.findAll({
+    attributes: [
+      'related_product_id'
+    ],
+    where: {
+      current_product_id: product_id
+    }
+  })
+  // Then we need to change the returned models into an array of just the values
+  .then((models) => {
+    return models.map((model) => {
+      return model.related_product_id;
+    })
+  })
+}
+
+
 module.exports = {
   getProducts,
-  getProduct
+  getProduct,
+  getRelatedProducts
 };
