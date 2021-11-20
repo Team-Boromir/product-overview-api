@@ -1,4 +1,4 @@
-const {getProducts, getProduct, getRelatedProducts} = require('../db/Product.js');
+const {getProducts, getProduct, getRelated} = require('../db/Product.js');
 
 describe('Getting Products', () => {
 
@@ -48,24 +48,22 @@ describe('Getting a Product', () => {
     return getProduct(12321)
     .then((product) => {
       expect(product.features !== undefined).toBe(true);
-    })
-  })
+    });
+  });
 
 });
 
 describe('Getting related products', () => {
 
   it('getRelatedProducts should be a function', () => {
-    expect(typeof getRelatedProducts).toBe('function');
-  })
+    expect(typeof getRelated).toBe('function');
+  });
 
   it('getRelatedProducts should resolve to an array', () => {
-    return getRelatedProducts(123433)
+    return getRelated(123433)
     .then((relatedProducts) => {
       expect(Array.isArray(relatedProducts)).toBe(true);
-    })
-  })
+    });
+  });
 
-
-
-})
+});

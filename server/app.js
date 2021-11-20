@@ -4,7 +4,6 @@ const styles = require('../db/style.js');
 const app = express();
 const port = 3000;
 
-// stub for the products endpoint
 app.get('/products', (req, res) => {
   products.getProducts()
   .then((products) => {
@@ -12,10 +11,9 @@ app.get('/products', (req, res) => {
   })
   .catch((err) => {
     res.sendStatus(400);
-  })
+  });
 });
 
-// Stub for the product/:product_id endpoint
 app.get('/products/:product_id', (req, res) => {
   products.getProduct(req.params.product_id)
   .then((product) => {
@@ -23,19 +21,29 @@ app.get('/products/:product_id', (req, res) => {
   })
   .catch((err) => {
     console.log(err);
-  })
+  });
 });
 
 
-// Stub for the producs/:product_id/styles endpoint
 app.get('/products/:product_id/styles', (req, res) => {
-  res.send(200, 'Here be the styles you requested');
+  styles.getStyles(req.params.product_id)
+  .then((styles) => {
+    res.status(200).send(styles);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 });
 
 
-// Stub for the products/:product_id/related
 app.get('/products/:product_id/related', (req, res) => {
-  res.send(200, 'Here be the related products you requested');
+  products.getRelated(req.params.product_id)
+  .then((relatedProducts) => {
+    res.status(200).send(relatedProducts);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 });
 
 
