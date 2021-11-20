@@ -6,7 +6,7 @@ describe('Getting Products', () => {
     expect(typeof getProducts).toBe('function');
   });
 
-  it('should return 5 products by default', () => {
+  it('getProducts should return 5 products by default', () => {
     return getProducts()
     .then((products) => {
       expect(products.length).toBe(5);
@@ -16,7 +16,7 @@ describe('Getting Products', () => {
     });
   });
 
-  it('should be able to specify quantity of products returned with count', () => {
+  it('getProducts should be able to specify quantity of products returned with count', () => {
     return getProducts(10)
     .then((products) => {
       expect(products.length).toBe(10);
@@ -30,11 +30,11 @@ describe('Getting Products', () => {
 
 describe('Getting a Product', () => {
 
-  it('getProducts should be a function', () => {
+  it('getProduct should be a function', () => {
     expect(typeof getProduct).toBe('function');
   });
 
-  it('getProducts should return a product with an id that matches the passed in id', () => {
+  it('getProduct should return a product with an id that matches the passed in id', () => {
     return getProduct(12321)
     .then((product) => {
       expect(product.id).toBe(12321);
@@ -44,7 +44,7 @@ describe('Getting a Product', () => {
     });
   });
 
-  it('getProducts should return the features included in the product object', () => {
+  it('getProduct should return the features included in the product object', () => {
     return getProduct(12321)
     .then((product) => {
       expect(product.features !== undefined).toBe(true);
