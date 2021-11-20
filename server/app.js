@@ -11,14 +11,19 @@ app.get('/products', (req, res) => {
     res.status(200).send(products);
   })
   .catch((err) => {
-    debugger;
     res.sendStatus(400);
   })
 });
 
 // Stub for the product/:product_id endpoint
 app.get('/products/:product_id', (req, res) => {
-  res.send(200, 'Here be one product you requested');
+  products.getProduct(req.params.product_id)
+  .then((product) => {
+    res.status(200).send(product);
+  })
+  .catch((err) => {
+    console.log(err);
+  })
 });
 
 

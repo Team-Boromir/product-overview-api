@@ -38,3 +38,12 @@ describe('/products endpoint', () => {
       .expectJsonLike([]);
   })
 })
+
+
+describe('/products/:product_id endpoint', () => {
+  it('should return an object', () => {
+    return pactum.spec()
+      .get('http://localhost:3000/products')
+      .expectJsonLike({});
+  })
+})

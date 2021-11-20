@@ -62,11 +62,10 @@ describe('Getting related products', () => {
   it('getRelatedProducts should resolve to an array', () => {
     return getRelatedProducts(123433)
     .then((relatedProducts) => {
-      debugger;
       expect(Array.isArray(relatedProducts)).toBe(true);
     })
   })
 
-  
+
 
 })
