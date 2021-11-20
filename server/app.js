@@ -1,10 +1,19 @@
 const express = require('express');
+const products = require('../db/Product.js');
+const styles = require('../db/style.js');
 const app = express();
 const port = 3000;
 
 // stub for the products endpoint
 app.get('/products', (req, res) => {
-  res.send(200, 'Here be products');
+  products.getProducts()
+  .then((products) => {
+    res.status(200).send(products);
+  })
+  .catch((err) => {
+    debugger;
+    res.sendStatus(400);
+  })
 });
 
 // Stub for the product/:product_id endpoint

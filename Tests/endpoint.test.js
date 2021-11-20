@@ -29,3 +29,12 @@ describe('Product api has the expected endpoints', () => {
   });
 
 });
+
+
+describe('/products endpoint', () => {
+  it('should return an array of products', () => {
+    return pactum.spec()
+      .get('http://localhost:3000/products')
+      .expectJsonLike([]);
+  })
+})
