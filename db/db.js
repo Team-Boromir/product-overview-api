@@ -97,7 +97,7 @@ const Sku = sequelize.define('Sku', {
 });
 
 const Style = sequelize.define('Style', {
-  id: {
+  style_id: {
     type: DataTypes.INTEGER,
     allowNull: false,
     primaryKey: true
@@ -114,8 +114,8 @@ const Style = sequelize.define('Style', {
   original_price: {
     type: DataTypes.INTEGER
   },
-  default_price: {
-    type: DataTypes.INTEGER
+  default_style: {
+    type: DataTypes.BOOLEAN
   }
 }, {
   timestamps: false
