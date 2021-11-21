@@ -29,3 +29,47 @@ describe('Product api has the expected endpoints', () => {
   });
 
 });
+
+
+describe('/products endpoint', () => {
+
+  it('should return an array of products', () => {
+    return pactum.spec()
+      .get('http://localhost:3000/products')
+      .expectJsonLike([]);
+  });
+
+});
+
+
+describe('/products/:product_id endpoint', () => {
+
+  it('should return an object', () => {
+    return pactum.spec()
+      .get('http://localhost:3000/products/1234')
+      .expectJsonLike({});
+  });
+
+});
+
+
+describe('/products/:product_id/styles endpoint', () => {
+
+  it('should return an object', () => {
+    return pactum.spec()
+      .get('http://localhost:3000/products/1234/styles')
+      .expectJsonLike({});
+  });
+
+});
+
+
+describe('/products/:product_id/related endpoint', () => {
+
+  it('should return an object', () => {
+    return pactum.spec()
+      .get('http://localhost:3000/products/1234/related')
+      .expectJsonLike([]);
+  });
+
+});

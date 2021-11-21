@@ -39,7 +39,7 @@ const getProduct = (id) => {
 };
 
 
-const getRelatedProducts = (product_id) => {
+const getRelated = (product_id) => {
   // Get the related_product_id for the passed in product_id
   return RelatedProduct.findAll({
     attributes: [
@@ -61,5 +61,5 @@ const getRelatedProducts = (product_id) => {
 module.exports = {
   getProducts,
   getProduct,
-  getRelatedProducts
+  getRelated
 };
