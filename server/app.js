@@ -1,3 +1,4 @@
+require('newrelic');
 const express = require('express');
 const products = require('../db/Product.js');
 const styles = require('../db/style.js');

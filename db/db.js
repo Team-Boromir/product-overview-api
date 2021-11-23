@@ -123,7 +123,7 @@ const Style = sequelize.define('Style', {
   original_price: {
     type: DataTypes.INTEGER
   },
-  default_style: {
+  "default?": {
     type: DataTypes.BOOLEAN
   }
 }, {
