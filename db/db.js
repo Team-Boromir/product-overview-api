@@ -3,7 +3,7 @@ const {USER_NAME, PASSWORD} = require('../config/config.js');
 
 const sequelize = new Sequelize('product-info', USER_NAME, PASSWORD, {
   dialect: 'postgres',
-  logging: false
+  // logging: false
 });
 
 const Product = sequelize.define('Product', {
@@ -123,7 +123,7 @@ const Style = sequelize.define('Style', {
   original_price: {
     type: DataTypes.INTEGER
   },
-  default_style: {
+  "default?": {
     type: DataTypes.BOOLEAN
   }
 }, {
