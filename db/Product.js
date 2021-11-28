@@ -4,33 +4,30 @@ const {sequelize, Product, Feature, RelatedProduct} = require('./db.js');
 
 
 const getProducts = (count = 5, page = 1) => {
-  let products = Product.findAll({
-    where: {
-      id: {
-        [Op.lte]: count
-      }
-    }
+  return Product.findAll({
+    offset: page * count - count,
+    limit: count,
+    raw: true
   })
-  return products;
 };
 
 const getProduct = (id) => {
   return Promise.all([
-    Product.findByPk(id),
+    Product.findByPk(id, {
+      raw: true
+    }),
     Feature.findAll({
+      attributes: ['value', 'feature'],
       where: {
         product_id: id
-      }
+      },
+      raw: true
     })
   ])
   .then((results) => {
-    let product = results[0].dataValues;
-    product.features = results[1].map((model) => {
-      let feature = {};
-      feature.feature = model.feature;
-      feature.value = model.value;
-      return feature;
-    });
+    // debugger;
+    let product = results[0];
+    product.features = results[1];
     return product;
   })
   .catch((err) => {
