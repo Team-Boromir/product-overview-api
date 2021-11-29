@@ -44,12 +44,13 @@ const getRelated = (product_id) => {
     ],
     where: {
       CurrentProductId: product_id
-    }
+    },
+    raw: true
   })
   // Then we need to change the returned models into an array of just the values
   .then((models) => {
     return models.map((model) => {
-      return model.related_product_id;
+      return model.RelatedProductId;
     })
   })
 }
