@@ -19,7 +19,7 @@ const getProduct = (id) => {
     Feature.findAll({
       attributes: ['value', 'feature'],
       where: {
-        product_id: id
+        ProductId: id
       },
       raw: true
     })
@@ -40,10 +40,10 @@ const getRelated = (product_id) => {
   // Get the related_product_id for the passed in product_id
   return RelatedProduct.findAll({
     attributes: [
-      'related_product_id'
+      'RelatedProductId'
     ],
     where: {
-      current_product_id: product_id
+      CurrentProductId: product_id
     }
   })
   // Then we need to change the returned models into an array of just the values
