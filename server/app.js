@@ -16,35 +16,47 @@ app.get('/products', (req, res) => {
 });
 
 app.get('/products/:product_id', (req, res) => {
-  products.getProduct(req.params.product_id)
-  .then((product) => {
-    res.status(200).send(product);
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+  if (req.params.product_id === 'undefined') {
+    res.sendStatus(400);
+  } else {
+    products.getProduct(req.params.product_id)
+    .then((product) => {
+      res.status(200).send(product);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  }
 });
 
 
 app.get('/products/:product_id/styles', (req, res) => {
-  styles.getStyles(req.params.product_id)
-  .then((styles) => {
-    res.status(200).send(styles);
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+  if (!req.params.product_id === 'undefined') {
+    res.sendStatus(400);
+  } else {
+    styles.getStyles(req.params.product_id)
+    .then((styles) => {
+      res.status(200).send(styles);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  }
 });
 
 
 app.get('/products/:product_id/related', (req, res) => {
-  products.getRelated(req.params.product_id)
-  .then((relatedProducts) => {
-    res.status(200).send(relatedProducts);
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+  if (req.params.product_id === 'undefined') {
+    res.sendStatus(400);
+  } else {
+    products.getRelated(req.params.product_id)
+    .then((relatedProducts) => {
+      res.status(200).send(relatedProducts);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  }
 });
 
 

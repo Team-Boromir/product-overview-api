@@ -37,9 +37,6 @@ const Feature = sequelize.define('Feature', {
     allowNull: false,
     primaryKey: true
   },
-  // product_id: {
-  //   type: DataTypes.INTEGER
-  // },
   feature: {
     type: DataTypes.STRING
   },
@@ -56,9 +53,6 @@ const Photo = sequelize.define('Photo', {
     allowNull: false,
     primaryKey: true
   },
-  // styleId: {
-  //   type: DataTypes.INTEGER
-  // },
   url: {
     type: DataTypes.STRING
   },
@@ -71,19 +65,13 @@ const Photo = sequelize.define('Photo', {
 
 // I'm not sure how to do a relational set up and will need to look into this
 const RelatedProduct = sequelize.define('Related_Product', {
-  id: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    primaryKey: true
-  },
-  // current_product_id: {
-  //   type: DataTypes.INTEGER
-  // },
-  // related_product_id: {
-  //   type: DataTypes.INTEGER
-  // }
-}, {
-  timestamps: false
+    id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true
+    }
+  }, {
+    timestamps: false
 });
 
 const Sku = sequelize.define('Sku', {
@@ -92,9 +80,6 @@ const Sku = sequelize.define('Sku', {
     allowNull: false,
     primaryKey: true
   },
-  // styleId: {
-  //   type: DataTypes.INTEGER
-  // },
   size: {
     type: DataTypes.STRING
   },
@@ -106,14 +91,11 @@ const Sku = sequelize.define('Sku', {
 });
 
 const Style = sequelize.define('Style', {
-  style_id: {
+  id: {
     type: DataTypes.INTEGER,
     allowNull: false,
     primaryKey: true
   },
-  // productId: {
-  //   type: DataTypes.INTEGER
-  // },
   name: {
     type: DataTypes.STRING
   },
@@ -134,11 +116,11 @@ const Style = sequelize.define('Style', {
 // Set up the associations between the tables
 // Products has a one to many relationship with features
 Product.hasMany(Feature);
-Feature.belongsTo(Product, {foreignKey: 'ProductDd'});
+Feature.belongsTo(Product);
 
 // Products has a one to many relationship with styles
 Product.hasMany(Style);
-Style.belongsTo(Product, {foreignKey: 'ProductId'});
+Style.belongsTo(Product);
 
 // Products has a many to many relationship with products through the related_products table
 Product.belongsToMany(Product, {as: 'CurrentProductId', through: RelatedProduct})
@@ -146,13 +128,13 @@ Product.belongsToMany(Product, {as: 'RelatedProductId', through: RelatedProduct}
 
 // Styles has a one to many relationship with photos
 Style.hasMany(Photo);
-Photo.belongsTo(Style, {foreignKey: 'StyleId'});
+Photo.belongsTo(Style);
 
 // Styles has a one to many relationship with skus
 Style.hasMany(Sku);
-Sku.belongsTo(Style, {foreignKey: 'StyleId'});
+Sku.belongsTo(Style);
 
-// sequelize.sync();
+sequelize.sync();
 
 
 module.exports = {

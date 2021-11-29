@@ -25,7 +25,6 @@ const getProduct = (id) => {
     })
   ])
   .then((results) => {
-    // debugger;
     let product = results[0];
     product.features = results[1];
     return product;
