@@ -56,7 +56,7 @@ const Photo = sequelize.define('Photo', {
     allowNull: false,
     primaryKey: true
   },
-  styleId: {
+  style_id: {
     type: DataTypes.INTEGER
   },
   url: {
@@ -92,7 +92,7 @@ const Sku = sequelize.define('Sku', {
     allowNull: false,
     primaryKey: true
   },
-  styleId: {
+  style_id: {
     type: DataTypes.INTEGER
   },
   size: {
@@ -111,7 +111,7 @@ const Style = sequelize.define('Style', {
     allowNull: false,
     primaryKey: true
   },
-  productId: {
+  product_id: {
     type: DataTypes.INTEGER
   },
   name: {

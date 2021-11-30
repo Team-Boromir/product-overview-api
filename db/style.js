@@ -10,7 +10,7 @@ const getStyles = (product_id) => {
   let styles = [];
   return Style.findAll({
     where: {
-      productId: product_id
+      product_id: product_id
     },
     raw: true
   })
@@ -21,12 +21,12 @@ const getStyles = (product_id) => {
       return Promise.all([
         Photo.findAll({
           where: {
-            styleId: style.style_id
+            style_id: style.style_id
           }
         }),
         Sku.findAll({
           where: {
-            styleId: style.style_id
+            style_id: style.style_id
           }
         })
       ])
