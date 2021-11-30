@@ -1,6 +1,6 @@
-const {NEW_RELIC} = './config/config.js'
 'use strict'
 
+const {NEW_RELIC} = require('./config/config.js');
 /**
  * New Relic agent configuration.
  *
