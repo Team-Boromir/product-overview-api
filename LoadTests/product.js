@@ -19,3 +19,17 @@ export default function () {
   http.get('http://localhost:3000/products/999231');
   sleep(1);
 };
+
+
+// export const options = {
+//   discardResponseBodies: true,
+//   scenarios: {
+//     contacts: {
+//       executor: 'constant-arrival-rate',
+//       rate: 1000, // x RPS, since timeUnit is the default 1s
+//       duration: '30s',
+//       preAllocatedVUs: 1000,
+//       maxVUs: 1000,
+//     },
+//   },
+// };
