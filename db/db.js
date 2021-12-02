@@ -1,9 +1,11 @@
 const {Sequelize, DataTypes, Op} = require('sequelize');
-const {USER_NAME, PASSWORD} = require('../config/config.js');
+const {USER_NAME, PASSWORD, DB_URL, DB_PORT} = require('../config/config.js');
 
-const sequelize = new Sequelize('product-info', USER_NAME, PASSWORD, {
+const sequelize = new Sequelize('product', USER_NAME, PASSWORD, {
   dialect: 'postgres',
-  logging: false
+  logging: false,
+  host: DB_URL,
+  port: DB_PORT,
 });
 
 const Product = sequelize.define('Product', {
